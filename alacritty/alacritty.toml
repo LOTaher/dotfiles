@@ -1,0 +1,18 @@
+import = ["/Users/lotaher/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+# import = ["/Users/lotaher/.config/alacritty/themes/themes/xterm.toml"]
+# import = ["/Users/lotaher/.config/alacritty/themes/themes/base16_default_dark.toml"]
+
+[shell]
+program = "/bin/bash"
+args = ["--login"]
+
+[window]
+decorations = "none"
+opacity = 0.95
+
+[font]
+size = 18
+
+[window.padding]
+x = 7
+y = 7
