@@ -4,6 +4,9 @@
 
 # lots of the stuff here was taken from mischa (https://github.com/mischavandenburg)
 
+# to tell zsh to shutup
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -77,6 +80,7 @@ PROMPT_COMMAND=set_bash_prompt
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
 alias vim="nvim"
+alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
 alias t="tmux"
 alias c="clear"
 alias bash="cd $HOME && vim .bashrc"
