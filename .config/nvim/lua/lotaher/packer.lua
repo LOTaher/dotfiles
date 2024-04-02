@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
     })
     use("vim-pandoc/vim-pandoc")
     use("vim-pandoc/vim-pandoc-syntax")
-    use("ixru/nvim-markdown")
+    use {"shortcuts/no-neck-pain.nvim", tag = "*" }
 
     -- LSP
     use {
