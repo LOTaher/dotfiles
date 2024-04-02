@@ -22,6 +22,7 @@ require('mason-lspconfig').setup({
         'rust_analyzer',
         'eslint',
         'clangd',
+        'marksman',
     },
     handlers = {
         lsp_zero.default_setup,
