@@ -15,14 +15,14 @@ set -o vi
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
-export SECOND_BRAIN="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Second\ Brain/"
+export SECOND_BRAIN="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain"
 
 export GOBIN="$HOME/.local/bin"
 export GOPATH="$HOME/go/"
 
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin/.local/scripts:$PATH"
 
  #~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -82,14 +82,14 @@ PROMPT_COMMAND=set_bash_prompt
 alias vim="nvim"
 alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
 alias t="tmux"
+alias ts="tmux-sessionizer"
 alias c="clear"
-alias bash="cd $HOME && vim .bashrc"
+alias bashrc="cd $HOME/dotfiles/ && vim .bashrc"
 alias projects="cd $HOME/Projects"
-alias scripts="cd $BIN"
 
 # zettelkasten
-alias notes="cd $SECOND_BRAIN && nvim ."
-alias in="cd $SECOND_BRAIN/00\ -\ Inbox && nvim ."
+# ...
+# ...
 
 # ls
 alias ls="ls --color=auto"

@@ -12,13 +12,14 @@ open_file() {
         echo "File already exists!"
         exit 1
     fi
-    touch $script_name.sh
+    touch $script_name
+    chmod +x $script_name
 
-    echo "#!/bin/bash" >> $script_name.sh
-    echo " " >> $script_name.sh
-    echo "# A bash script that" >> $script_name.sh
+    echo "#!/bin/bash" >> $script_name
+    echo " " >> $script_name
+    echo "# A bash script that" >> $script_name
 
-    nvim $script_name.sh -c :NoNeckPain
+    nvim $script_name 
 }
 
 get_script_name
