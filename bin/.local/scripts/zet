@@ -1,45 +1,49 @@
 #!/bin/bash
 
-# A bash script that creates a Zettelkasten note. Thank you Mischa.
+# A bash script that creates a Zettelkasten note. 
 
 get_filename() {
-	read -p "Enter a filename: " filename
-	echo "$filename"
+    read -p "Enter a filename: " filename
+    echo "$filename"
 }
 
 open_file() {
-
-	cd "$1" || exit
-	touch "$1/$filename.md"
+    cd "$1" || exit
+    touch "$filename.md"
 
     timestamp="$(date +'%Y-%m-%d %H:%M:%S')"
 
-	{
-		echo "# "
-		echo -en "\n"
-		echo -en "\n"
-		echo -en "\n"
-		echo "Links:"
-		echo -en "\n"
-		echo "$timestamp"
-	} >>"$1/$filename.md"
+    {
+        echo "# "
+        echo "---"
+        echo "tags:"
+        echo "---"
+        echo -en "\n"
+        echo -en "\n"
+        echo -en "\n"
+        echo "Links:"
+        echo -en "\n"
+        echo "$timestamp"
+    } >>"$filename.md"  
 
-	nvim "$1/$filename.md" -c :NoNeckPain
+    nvim "$filename.md" 
 }
 
 if [[ $# -eq 0 ]]; then
-	filename=$(get_filename)
+    filename=$(get_filename)
 fi
 
 if [[ $# -gt 1 ]]; then
-	echo "Please provide only one filename separated by dashes, without .md extension."
-	echo "Example: zet my-new-note"
-	exit 1
+    echo "Please provide only one filename separated by dashes, without .md extension."
+    echo "Example: zet my-new-note"
+    exit 1
 fi
 
 if [[ $# -eq 1 ]]; then
-	filename=$1
+    filename=$1
 fi
 
-open_file "$SECOND_BRAIN/00 - Inbox"
+echo $ZETTELKASTEN
+
+open_file "/Users/lotaher/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten"
 

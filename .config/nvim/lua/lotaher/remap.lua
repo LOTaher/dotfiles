@@ -26,10 +26,24 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
--- Yank to clipboard instead
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+--tabs in visual mode
+vim.keymap.set("v", '<S-Tab>', '<<')
+vim.keymap.set("v", '<Tab>', '>>')
+
+--allows ci without removing current paste buffer
+vim.keymap.set("n", "ci(", "\"_ci(")
+vim.keymap.set("n", "ci)", "\"_ci)")
+vim.keymap.set("n", "ci{", "\"_ci{")
+vim.keymap.set("n", "ci}", "\"_ci}")
+vim.keymap.set("n", "ci'", "\"_ci'")
+vim.keymap.set("n", "ci[", "\"_ci[")
+vim.keymap.set("n", "ci]", "\"_ci]")
+vim.keymap.set("n", "ci\"", "\"_ci\"")
+
+
+-- Allow the use of D without copying
+vim.keymap.set("n", "d", "\"_d")
+vim.keymap.set("v", "d", "\"_d")
 
 -- Format
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A bash script that creates a new script file with the given name and opens it in the default text editor.
+# A bash script that creates a new script file 
 
 get_script_name() {
     read -p "Enter a file name: " script_name
