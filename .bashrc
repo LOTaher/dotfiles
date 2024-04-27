@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-# lots of the stuff here was taken from mischa (https://github.com/mischavandenburg)
+neofetch
 
 # to tell zsh to shutup
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -15,7 +15,7 @@ set -o vi
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
-export SECOND_BRAIN="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain"
+export ZETTELKASTEN="/Users/lotaher/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Zettelkasten"
 
 export GOBIN="$HOME/.local/bin"
 export GOPATH="$HOME/go/"
@@ -80,16 +80,16 @@ PROMPT_COMMAND=set_bash_prompt
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
 alias vim="nvim"
-alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
 alias t="tmux"
 alias ts="tmux-sessionizer"
 alias c="clear"
+alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
 alias bashrc="cd $HOME/dotfiles/ && vim .bashrc"
 alias projects="cd $HOME/Projects"
 
 # zettelkasten
-# ...
-# ...
+alias zk="cd $ZETTELKASTEN"
+
 
 # ls
 alias ls="ls --color=auto"
