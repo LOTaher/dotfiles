@@ -1,6 +1,6 @@
 #!/bin/bash
-
-# A bash script that creates a Zettelkasten note. 
+ 
+# A bash script that creates a scaffolded blog markdown file in my zettelkasten.
 
 get_filename() {
     read -p "Enter a filename: " filename
@@ -14,19 +14,15 @@ open_file() {
     timestamp="$(date +'%m-%d-%Y')"
 
     {
-        echo "# "
         echo "---"
-        echo "tags:"
+        echo "title: $filename"
+        echo "description: "
+        echo "date: $timestamp"
+        echo "tags: blog"
         echo "---"
-        echo -en "\n"
-        echo -en "\n"
-        echo -en "\n"
-        echo "Links:"
-        echo -en "\n"
-        echo "$timestamp"
-    } >>"$filename.md"  
+    } >>"$filename.md"
 
-    nvim "$filename.md" 
+    nvim "$filename.md"
 }
 
 if [[ $# -eq 0 ]]; then
@@ -35,7 +31,7 @@ fi
 
 if [[ $# -gt 1 ]]; then
     echo "Please provide only one filename separated by dashes, without .md extension."
-    echo "Example: zet my-new-note"
+    echo "Example: blog my-new-blog"
     exit 1
 fi
 
@@ -44,4 +40,3 @@ if [[ $# -eq 1 ]]; then
 fi
 
 open_file "/Users/lotaher/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten"
-
