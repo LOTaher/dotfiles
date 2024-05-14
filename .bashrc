@@ -90,6 +90,10 @@ alias projects="cd $HOME/Projects"
 # zettelkasten
 alias zk="cd $ZETTELKASTEN"
 
+# yabai
+alias ystart="yabai --start-service"
+alias ystop="yabai --stop-service"
+
 
 # ls
 alias ls="ls --color=auto"
