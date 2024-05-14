@@ -15,11 +15,12 @@ open_file() {
 
     {
         echo "---"
-        echo "title: $filename"
+        echo "title: "
         echo "description: "
         echo "date: $timestamp"
         echo "tags: blog"
         echo "---"
+        echo "# "
     } >>"$filename.md"
 
     nvim "$filename.md"
@@ -39,4 +40,5 @@ if [[ $# -eq 1 ]]; then
     filename=$1
 fi
 
+# my environment variable isn't working for some reason
 open_file "/Users/lotaher/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten"

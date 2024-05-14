@@ -14,7 +14,6 @@ open_file() {
     timestamp="$(date +'%m-%d-%Y')"
 
     {
-        echo "# "
         echo "---"
         echo "tags:"
         echo "---"

@@ -2,26 +2,15 @@
 
 # A bash script that creates a new script file 
 
-get_script_name() {
-    read -p "Enter a file name: " script_name
-}
+name=$1
 
-open_file() {
-    cd $HOME/dotfiles/bin/.local/scripts/
-    if [ -f $script_name.sh ]; then
-        echo "File already exists!"
-        exit 1
-    fi
-    touch $script_name
-    chmod +x $script_name
+if [ $# -eq 0 ]; then
+	# ask for name of script
+	echo "Please provide a name for the script"
+	read -r name
+fi
 
-    echo "#!/bin/bash" >> $script_name
-    echo " " >> $script_name
-    echo "# A bash script that" >> $script_name
-
-    nvim $script_name 
-}
-
-get_script_name
-open_file
-
+cd "$SCRIPTS" || exit
+touch "$name"
+chmod +x "$name"
+echo "#!/bin/bash" >"$name"
