@@ -1,5 +1,15 @@
-require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all" (the five listed parsers should always be installed)
+return {
+ "nvim-treesitter/nvim-treesitter",
+ event = { "BufReadPre", "BufNewFile" },
+ build = ":TSUpdate",
+ dependencies = {
+    "windwp/nvim-ts-autotag",
+  },
+ config = function()
+    local treesitter = require("nvim-treesitter.configs")
+
+    treesitter.setup({
+        -- A list of parser names, or "all" (the five listed parsers should always be installed)
     ensure_installed = { "c", "javascript", "typescript", "lua", "vim", "vimdoc", "query", "rust" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -22,4 +32,7 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
         disable = { "markdown" }
     },
+    })
+ end,
+
 }
