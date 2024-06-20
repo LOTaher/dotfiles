@@ -14,7 +14,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Select all 
+-- Select all
 vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- When searching, keep the cursor in the middle
@@ -50,9 +50,16 @@ vim.keymap.set("v", "d", "\"_d")
 -- Format
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
+-- Use :InspectTree
+vim.keymap.set("n", "<leader>i", vim.cmd.InspectTree)
+
+-- Plenary tests
+vim.keymap.set("n", "<leader>t", "<Plug>PlenaryTestFile")
+
+-- Source the current file
+vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>")
+
 -- Mass replace the word your cursor is on
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+vim.keymap.set("n", "<leader><leader>", ":so<CR>")
