@@ -10,9 +10,9 @@ Ensure you have the following installed on your system
 
 `brew install git`
 
-**Arch**
+**Debian**
 
-`pacman -S git`
+`apt install git`
 
 ### **Stow**
 
@@ -20,9 +20,9 @@ Ensure you have the following installed on your system
 
 `brew install stow`
 
-**Arch**
+**Debian**
 
-`pacman -S stow`
+`apt install stow`
 
 ## Installation
 
