@@ -2,6 +2,7 @@
 # ~/.bashrc
 #
 
+# cat /etc/motd
 neofetch
 
 # to tell zsh to shutup
@@ -77,16 +78,26 @@ set_bash_prompt(){
 # activate the prompt
 # PROMPT_COMMAND=set_bash_prompt
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;244m\][\[\e[93;1m\]\u\[\e[0;38;5;244m\]@\[\e[36m\]\h\[\e[0m\] \[\e[35m\]\W\[\e[0m\] \[\e[92m\]${PS1_CMD1}\[\e[38;5;244m\]]\\$\[\e[0m\] '
+# PS1='\[\e[38;5;244m\][\[\e[38;5;52;1m\]\u\[\e[0;38;5;244m\]@\[\e[38;5;255m\]\h\[\e[0m\] \[\e[92m\]\W\[\e[38;5;244m\]]\\$\[\e[0m\] '
 
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
 alias vim="nvim"
+
+# tmux
+
+# [t]mux
 alias t="tmux"
-alias ts="tmux-sessionizer"
+# [t]mux [a]ttach
+alias ta="tmux attach-session -t"
+# [t]mux [k]ill
+alias tk="tmux kill-session -t"
+# [t]mux [c]lear
+alias tc="tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t"
+
 alias c="clear"
 alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
 alias bashrc="cd $HOME/dotfiles/ && vim .bashrc"
-alias projects="cd $HOME/Projects"
 
 # zettelkasten
 alias zk="cd $ZETTELKASTEN"
@@ -95,17 +106,22 @@ alias zk="cd $ZETTELKASTEN"
 alias ystart="yabai --start-service"
 alias ystop="yabai --stop-service"
 
-
 # ls
 alias ls="ls --color=auto"
 alias ll="ls -la"
 # alias ll="exa -l -g --icons --git"
 
 # git
+
+#[g]it
 alias g="git"
+# [g]it [s]tatus
 alias gs="git status"
+# [g]it [a]dd
 alias ga="git add"
+# [g]it [c]ommit
 alias gc="git commit"
+# [g]it [p]ush
 alias gp="git push"
 
 # fun
@@ -114,7 +130,6 @@ alias fishies=asciiquarium
 # ~~~~~~~~~~~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~
 
 eval "$(zoxide init bash)"
-
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
