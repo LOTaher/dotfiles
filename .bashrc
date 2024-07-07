@@ -16,8 +16,6 @@ set -o vi
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
-export ZETTELKASTEN="/Users/lotaher/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Zettelkasten"
-
 export GOBIN="$HOME/.local/bin"
 export GOPATH="$HOME/go/"
 
@@ -83,6 +81,7 @@ PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
 alias vim="nvim"
+alias c="clear"
 
 # tmux
 
@@ -95,12 +94,6 @@ alias tk="tmux kill-session -t"
 # [t]mux [c]lear
 alias tc="tmux list-sessions | grep -v attached | cut -d: -f1 |  xargs -t -n1 tmux kill-session -t"
 
-alias c="clear"
-alias nv="cd $HOME/dotfiles/.config/nvim && nvim ."
-alias bashrc="cd $HOME/dotfiles/ && vim .bashrc"
-
-# zettelkasten
-alias zk="cd $ZETTELKASTEN"
 
 # yabai
 alias ystart="yabai --start-service"
