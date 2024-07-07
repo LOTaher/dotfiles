@@ -12,7 +12,7 @@ Ensure you have the following installed on your system
 
 **Debian**
 
-`apt install git`
+`apt-get install git`
 
 ### **Stow**
 
@@ -22,7 +22,7 @@ Ensure you have the following installed on your system
 
 **Debian**
 
-`apt install stow`
+`apt-get install stow`
 
 ## Installation
 
