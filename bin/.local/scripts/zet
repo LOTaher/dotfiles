@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A bash script that creates a Zettelkasten note. 
+# A bash script that creates a Zettelkasten note.
 
 get_filename() {
     read -p "Enter a filename: " filename
@@ -23,24 +23,24 @@ open_file() {
         echo "Links:"
         echo -en "\n"
         echo "$timestamp"
-    } >>"$filename.md"  
+    } >>"$filename.md"
 
-    nvim "$filename.md" 
+    nvim "$filename.md"
 }
 
 if [[ $# -eq 0 ]]; then
     filename=$(get_filename)
 fi
 
-if [[ $# -gt 1 ]]; then
-    echo "Please provide only one filename separated by dashes, without .md extension."
-    echo "Example: zet my-new-note"
-    exit 1
-fi
+# if [[ $# -gt 1 ]]; then
+#     echo "Please provide only one filename separated by dashes, without .md extension."
+#     echo "Example: zet my-new-note"
+#     exit 1
+# fi
 
 if [[ $# -eq 1 ]]; then
     filename=$1
 fi
 
-open_file "/Users/lotaher/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten"
+open_file "/Users/lotaher/Zettelkasten/Zettelkasten"
 
