@@ -26,6 +26,11 @@ vim.opt.scrolloff = 10
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.foldenable = false
+
+-- vim.opt.list = true
+-- vim.opt.listchars = { eol = '↲' }
+
 vim.cmd("set ve+=onemore")
 
 vim.api.nvim_create_autocmd('TextYankPost', {

@@ -1,4 +1,5 @@
 return {
-    dir = "~/Plugins/rave.nvim",
+    "lotaher/rave.nvim",
+    -- dir = "~/Plugins/rave.nvim",
 }
 
