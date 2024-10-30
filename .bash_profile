@@ -9,5 +9,6 @@ if [ -r ~/.bashrc ]; then
   source ~/.bashrc
 fi
 
+export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
 export XDG_CONFIG_HOME="$HOME"/.config
 
