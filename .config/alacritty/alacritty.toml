@@ -1,7 +1,7 @@
-# import = ["/Users/lotaher/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+import = ["/Users/lotaher/.config/alacritty/themes/themes/gruvbox_dark.toml"]
 # import = ["/Users/lotaher/.config/alacritty/themes/themes/rose-pine.toml"]
 # import = ["/Users/lotaher/.config/alacritty/themes/themes/xterm.toml"]
-import = ["/Users/lotaher/.config/alacritty/themes/themes/base16_default_dark.toml"]
+# import = ["/Users/lotaher/.config/alacritty/themes/themes/base16_default_dark.toml"]
 
 [shell]
 program = "/bin/bash"
