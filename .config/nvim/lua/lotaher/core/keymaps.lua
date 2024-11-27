@@ -1,11 +1,28 @@
 vim.g.mapleader = " "
 
--- Disabling because I am now using oil.nvim
+-- Disabling since I now use neo-tree
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Move full lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Vim keys to switch between buffers
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+-- Buffer resizing
+vim.keymap.set('n', '<S-Left>', '<Cmd>vertical resize -2<CR>')
+vim.keymap.set('n', '<S-Right>', '<Cmd>vertical resize +2<CR>')
+vim.keymap.set('n', '<S-Up>', '<Cmd>resize -2<CR>')
+vim.keymap.set('n', '<S-Down>', '<Cmd>resize +2<CR>')
+
+-- Vertical split
+vim.keymap.set('n', '<leader>|', '<Cmd>vsplit<CR>')
+-- Horizontal split
+vim.keymap.set('n', '<leader>_', '<Cmd>split<CR>')
 
 -- Takes line below you and appends it with a space
 vim.keymap.set("n", "J", "mzJ`z")
