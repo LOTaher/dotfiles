@@ -27,11 +27,6 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.foldenable = false
 
--- vim.opt.list = true
--- vim.opt.listchars = { eol = '↲' }
-
-vim.cmd("set ve+=onemore")
-
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
@@ -41,5 +36,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.cmd("silent! %s/\\s\\+$//e")
+	end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+		vim.opt.scrolloff = 0
+		vim.bo.filetype = "terminal"
 	end,
 })
