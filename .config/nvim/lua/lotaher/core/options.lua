@@ -27,6 +27,12 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.foldenable = false
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		vim.cmd("highlight String cterm=NONE gui=NONE")
+	end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
@@ -47,5 +53,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.bo.filetype = "terminal"
 	end,
 })
-
-vim.cmd("highlight String cterm=NONE gui=NONE")
