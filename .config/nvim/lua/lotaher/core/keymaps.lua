@@ -8,10 +8,10 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Vim keys to switch between buffers
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+-- vim.keymap.set("n", "<C-h>", "<C-w>h")
+-- vim.keymap.set("n", "<C-j>", "<C-w>j")
+-- vim.keymap.set("n", "<C-k>", "<C-w>k")
+-- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Buffer resizing
 vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
@@ -73,10 +73,10 @@ vim.keymap.set("n", "<S-h>", ":tabprevious<CR>")
 
 -- Terminal
 vim.keymap.set("n", "<leader>t", function()
-  vim.cmd.vnew()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 12)
-  vim.cmd.terminal()
+	vim.cmd.vnew()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 12)
+	vim.cmd.terminal()
 end)
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
