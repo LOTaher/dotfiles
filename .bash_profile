@@ -14,3 +14,4 @@ export XDG_CONFIG_HOME="$HOME"/.config
 
 . "$HOME/.cargo/env"
 . "/Users/lotaher/.deno/env"
+[[ -f ~/.bashrc ]] && . ~/.bashrc # ghcup-env

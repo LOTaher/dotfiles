@@ -47,3 +47,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.bo.filetype = "terminal"
 	end,
 })
+
+vim.cmd("highlight String cterm=NONE gui=NONE")

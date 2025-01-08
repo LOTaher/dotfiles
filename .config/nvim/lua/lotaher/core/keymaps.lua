@@ -73,11 +73,12 @@ vim.keymap.set("n", "<S-h>", ":tabprevious<CR>")
 
 -- Terminal
 vim.keymap.set("n", "<leader>t", function()
-	vim.cmd.vnew()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 12)
-	vim.cmd.terminal()
+  vim.cmd.vnew()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 12)
+  vim.cmd.terminal()
 end)
+
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 -- Use :InspectTree
