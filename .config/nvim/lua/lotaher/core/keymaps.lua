@@ -16,8 +16,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Buffer resizing
 vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>")
-vim.keymap.set("n", "<S-Up>", ":resize -2<CR>")
-vim.keymap.set("n", "<S-Down>", ":resize +2<CR>")
+vim.keymap.set("n", "<S-Up>", ":resize +2<CR>")
+vim.keymap.set("n", "<S-Down>", ":resize -2<CR>")
 
 -- Vertical split
 vim.keymap.set("n", "<leader>|", "<Cmd>vsplit<CR>")
