@@ -106,15 +106,6 @@ alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 
-#   Helpful for quickly navigating to common git directories
-#   i.e. Regardless of your cwd, you can jump straight to one
-#   of our project roots
-alias sources='cd ~/dev'
-alias clmobile='cd ~/dev/mobile'
-alias clclaim='cd ~/dev/claim'
-alias clcore='cd ~/dev/claim/core'
-alias cldash='cd ~/dev/claim/cs-dashboard'
-
 #   'Cd's to the path of frontmost window of MacOS Finder
 #   Basically "Reveal in Finder" but on the command line :)
 cdf () {
