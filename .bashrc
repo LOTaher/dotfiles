@@ -135,7 +135,7 @@ EOT
 
 #   Shows you the last 5 branches you've been on (you can pass it a number to show more e.g. git_history -n 10)
 git_history () {
-    local num_results=5  # Default number of results
+    local num_results=10  # Default number of results
     while getopts ":n:" opt; do
         case ${opt} in
             n )
