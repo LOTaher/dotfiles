@@ -152,6 +152,17 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"tpope/vim-sleuth",
 	{
+		"tpope/vim-fugitive",
+		config = function()
+			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+			vim.api.nvim_create_autocmd("BufEnter", {
+				callback = function()
+					vim.keymap.set("n", "<leader>ds", vim.cmd.Gvdiffsplit)
+				end,
+			})
+		end,
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		enabled = true,
 		config = function()
@@ -534,9 +545,7 @@ require("lazy").setup({
 			event = { "BufReadPre", "BufNewFile" },
 			config = function()
 				local lint = require("lint")
-				lint.linters_by_ft = {
-					markdown = { "markdownlint" },
-				}
+				lint.linters_by_ft["markdown"] = nil
 				local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 				vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 					group = lint_augroup,
@@ -547,23 +556,6 @@ require("lazy").setup({
 					end,
 				})
 			end,
-		},
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		lazy = true,
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>" },
 		},
 	},
 })

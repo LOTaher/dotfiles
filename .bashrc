@@ -92,6 +92,11 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
 
+alias clmobile='cd ~/dev/mobile'
+alias clclaim='cd ~/dev2/claim'
+alias clcore='cd ~/dev2/claim/core'
+alias cldash='cd ~/dev2/claim/cs-dashboard'
+
 #   Moves a File to the MacOS trash
 trash () { command mv "$@" ~/.Trash ; }
 
