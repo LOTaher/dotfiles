@@ -157,7 +157,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 			vim.api.nvim_create_autocmd("BufEnter", {
 				callback = function()
-					vim.keymap.set("n", "<leader>ds", vim.cmd.Gvdiffsplit)
+					vim.keymap.set("n", "<leader>dv", vim.cmd.Gvdiffsplit)
 				end,
 			})
 		end,
