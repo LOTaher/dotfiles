@@ -214,6 +214,9 @@ require("lazy").setup({
 			},
 		},
 	},
+
+	-- LSP -------
+
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -290,7 +293,6 @@ require("lazy").setup({
 
 			local servers = {
 				ts_ls = {},
-
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -301,6 +303,7 @@ require("lazy").setup({
 						},
 					},
 				},
+				prismals = {},
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -309,6 +312,9 @@ require("lazy").setup({
 				"prettier",
 				"prettierd",
 				"eslint_d",
+				"eslint-lsp",
+				"html-lsp",
+				"sqlls",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
