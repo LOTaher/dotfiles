@@ -428,6 +428,8 @@ require("lazy").setup({
 		end,
 	},
 
+	-- Theme -------
+
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
@@ -436,6 +438,7 @@ require("lazy").setup({
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
+
 	{
 		"echasnovski/mini.nvim",
 		config = function()
