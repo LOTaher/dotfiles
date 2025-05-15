@@ -108,6 +108,29 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+vim.keymap.set("n", "<leader>h", function()
+	local snippet = [[
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+  ]]
+	local lines = vim.split(snippet, "\n")
+	vim.api.nvim_put(lines, "l", true, true)
+end)
+
+vim.keymap.set("n", "<leader>b", function()
+	local path = vim.api.nvim_exec("echo expand('%:p')", true)
+	vim.cmd("!open " .. "'" .. path .. "'")
+end)
+
 -- Autocommands -------
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
