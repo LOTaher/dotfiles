@@ -1,5 +1,4 @@
 -- Options -------
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -148,7 +147,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- Plugins -------
-
 require("lazy").setup({
 	"tpope/vim-sleuth",
 	{
@@ -196,7 +194,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>ff", builtin.find_files)
 			vim.keymap.set("n", "<leader>fg", builtin.git_files)
 			vim.keymap.set("n", "<leader>fw", builtin.live_grep)
+			vim.keymap.set("n", "<leader>fr", builtin.resume)
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags)
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
 
 			vim.keymap.set("n", "<leader>fc", function()
 				builtin.find_files({
@@ -216,7 +216,6 @@ require("lazy").setup({
 	},
 
 	-- LSP -------
-
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -273,10 +272,10 @@ require("lazy").setup({
 					end
 
 					vim.api.nvim_create_autocmd("LspDetach", {
-						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 						end,
 					})
 				end,
@@ -319,7 +318,7 @@ require("lazy").setup({
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table
+				ensure_installed = {},
 				automatic_installation = false,
 				handlers = {
 					function(server_name)
@@ -344,24 +343,62 @@ require("lazy").setup({
 				mode = "",
 			},
 		},
-		opts = {
-			notify_on_error = false,
-			format_on_save = function(bufnr)
-				local disable_filetypes = { c = true, cpp = true }
-				if disable_filetypes[vim.bo[bufnr].filetype] then
-					return nil
-				else
-					return {
-						timeout_ms = 500,
-						lsp_format = "fallback",
-					}
-				end
-			end,
-			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-			},
-		},
+
+		opts = function()
+			local util = require("conform.util")
+
+			return {
+				notify_on_error = false,
+				format_on_save = function(bufnr)
+					local disable_filetypes = { c = true, cpp = true }
+					if disable_filetypes[vim.bo[bufnr].filetype] then
+						return nil
+					else
+						return {
+							timeout_ms = 500,
+							lsp_format = "fallback",
+						}
+					end
+				end,
+
+				formatters_by_ft = {
+					lua = { "stylua" },
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+					typescript = { "prettierd", "prettier", stop_after_first = true },
+				},
+				formatters = {
+					stylua = {
+						exe = "stylua",
+						args = { "--search-parent-directories", "--stdin-filepath", "$FILENAME" },
+						stdin = true,
+					},
+					prettierd = {
+						exe = "prettierd",
+						args = { "--stdin-filepath", "$FILENAME" },
+						stdin = true,
+						cwd = util.root_file({
+							".prettierrc",
+							"prettier.config.js",
+							"package.json",
+							".git",
+						}),
+						require_cwd = true,
+					},
+					prettier = {
+						exe = "./node_modules/.bin/prettier",
+						args = { "--stdin-filepath", "$FILENAME" },
+						stdin = true,
+						cwd = util.root_file({
+							".prettierrc",
+							"prettier.config.js",
+							"package.json",
+							".git",
+						}),
+						require_cwd = true,
+					},
+				},
+			}
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -427,7 +464,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
