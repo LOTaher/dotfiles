@@ -31,7 +31,6 @@ vim.opt.colorcolumn = "100"
 vim.opt.foldenable = false
 
 -- Keymaps -------
-
 vim.g.mapleader = " "
 
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
