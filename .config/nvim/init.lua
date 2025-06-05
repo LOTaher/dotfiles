@@ -105,7 +105,7 @@ vim.keymap.set("n", "<leader><leader>x", ":source %<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Autocommands -------
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -247,10 +247,10 @@ require("lazy").setup({
 					vim.keymap.set("n", "<leader>vca", function()
 						vim.lsp.buf.code_action()
 					end, opts)
-					vim.keymap.set("n", "<leader>vrr", function()
+					vim.keymap.set("n", "<leader>gr", function()
 						vim.lsp.buf.references()
 					end, opts)
-					vim.keymap.set("n", "<leader>vrn", function()
+					vim.keymap.set("n", "<leader>s", function()
 						vim.lsp.buf.rename()
 					end, opts)
 					vim.keymap.set("i", "<C-h>", function()
