@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+FILE=$(find -d ~/personal/ ~/github/ -type f | grep -v "node_modules" | fzf) && nvim ${FILE}
+
+
