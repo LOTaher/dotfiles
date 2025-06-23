@@ -19,16 +19,14 @@ set -o vi
 
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-export PATH="~/bin/.local/scripts/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
+
+export PATH=$PATH:/usr/local/go/bin
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-. ~/.git-prompt.sh
-
-# old gruvbox prompt
+# PS1='\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;35m\]\w\[\e[1;31m\]]\[\e[1;00m\]\$\[\e[0;00m\] '
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;244m\][\[\e[93;1m\]\u\[\e[0;38;5;244m\]@\[\e[36m\]\h\[\e[0m\] \[\e[35m\]\W\[\e[0m\] \[\e[92m\]${PS1_CMD1}\[\e[38;5;244m\]]\\$\[\e[0m\] '
-
-# PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;247m\]λ\[\e[0m\] \[\e[38;5;184m\]\W\[\e[38;5;221m\]${PS1_CMD1}\[\e[0m\] '
 
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -36,13 +34,6 @@ alias vim="nvim"
 alias v="vim"
 alias v="nvim"
 alias c="clear"
-
-# fzf
-
-# [f]zf search and [p]review the files
-alias fp="fzf --preview 'bat --color=always --style=numbers --line-range :500 {}'"
-# [v]im [f]zf
-# alias vf="vim $(fzf)"
 
 # tmux
 
@@ -79,13 +70,6 @@ alias fishies=asciiquarium
 
 # ~~~~~~~~~~~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-eval "$(zoxide init bash)"
-
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f "/Users/lotaher/.ghcup/env" ] && . "/Users/lotaher/.ghcup/env" # ghcup-env
 
 # ~~~~~~~~~~~~~~~ Claim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias cp='cp -iv'
@@ -93,44 +77,7 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
 
-alias clmobile='cd ~/dev/mobile'
-alias clclaim='cd ~/dev2/claim'
-alias clcore='cd ~/dev2/claim/core'
-alias cldash='cd ~/dev2/claim/cs-dashboard'
-
-#   Moves a File to the MacOS trash
-trash () { command mv "$@" ~/.Trash ; }
-
-#   Opens cwd in MacOS Finder
-alias finder='open -a Finder ./'
-
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
-
-#   'Cd's to the path of frontmost window of MacOS Finder
-#   Basically "Reveal in Finder" but on the command line :)
-cdf () {
-        currFolderPath=$( /usr/bin/osascript <<EOT
-            tell application "Finder"
-                try
-            set currFolder to (folder of the front window as alias)
-                on error
-            set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
-EOT
-        )
-        echo "cd to \"$currFolderPath\""
-        cd "$currFolderPath"
-    }
-
-#   Shows you the last 5 branches you've been on (you can pass it a number to show more e.g. git_history -n 10)
+#   Shows you the last 10 branches you've been on (you can pass it a number to show more e.g. git_history -n 10)
 git_history () {
     local num_results=10  # Default number of results
     while getopts ":n:" opt; do
@@ -154,6 +101,3 @@ git_history () {
 
 #   Shorthand for the above function
 alias gith='git_history'
-
-#   Creates an invisible, unclickable app icon in your dock that can act as a spacer between groups of apps
-addDockSpacer() { defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}' && killall Dock ; }
