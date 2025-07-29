@@ -1,0 +1,14 @@
+#!/bin/bash
+system_action=$(echo -e "shutdown\nsleep" | dmenu -l 2) || exit 0
+
+case $system_action in
+    "shutdown")
+                sudo systemctl poweroff
+                ;;
+    "sleep")
+                sudo systemctl suspend
+                ;;
+    *)
+                exit 1
+                ;;
+esac
