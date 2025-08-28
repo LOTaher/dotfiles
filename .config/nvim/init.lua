@@ -104,7 +104,10 @@ vim.keymap.set("n", "<leader><leader>x", ":source %<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>")
+vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>")
+
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader>h", function()
 	local snippet = [[
@@ -128,6 +131,8 @@ vim.keymap.set("n", "<leader>b", function()
 	local path = vim.api.nvim_exec("echo expand('%:p')", true)
 	vim.cmd("!open " .. "'" .. path .. "'")
 end)
+
+vim.keymap.set("n", "<leader>bt", "F\"r`f\"r`")
 
 -- Autocommands -------
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -269,10 +274,10 @@ require("lazy").setup({
 					vim.keymap.set("n", "<leader>vca", function()
 						vim.lsp.buf.code_action()
 					end, opts)
-					vim.keymap.set("n", "<leader>vrr", function()
+					vim.keymap.set("n", "<leader>gr", function()
 						vim.lsp.buf.references()
 					end, opts)
-					vim.keymap.set("n", "<leader>vrn", function()
+					vim.keymap.set("n", "<leader>s", function()
 						vim.lsp.buf.rename()
 					end, opts)
 					vim.keymap.set("i", "<C-h>", function()
@@ -297,7 +302,7 @@ require("lazy").setup({
 						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+							-- vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 						end,
 					})
 				end,

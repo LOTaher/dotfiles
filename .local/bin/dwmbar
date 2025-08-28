@@ -1,0 +1,40 @@
+#!/bin/sh
+
+dte() {
+    dte="$(date +"%b %d %Y %H:%M")"
+    echo "$dte"
+}
+
+bat() {
+    # all battery information can be found in /sys/class/power_supply/BAT0/capacity, capacity_level and status
+    percentage=$(cat /sys/class/power_supply/BAT0/capacity)
+    status=$(cat /sys/class/power_supply/BAT0/status)
+
+    case $status in
+        "Charging")
+            status="^"
+            ;;
+        "Discharging")
+            status="x"
+            ;;
+    esac
+
+    echo "Battery: $percentage% [$status]"
+}
+
+vol() {
+    # does not account for fully muted audio (pressing the F1 button)
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o [0-9]*% | head --l 1)
+    echo "Volume: $volume"
+}
+
+status() {
+    echo " $(dte) | $(bat) | $(vol) "
+}
+
+
+while true; do
+    xsetroot -name "$(status)"
+    # update the status every 60 seconds
+    sleep 60
+done
