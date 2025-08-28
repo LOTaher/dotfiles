@@ -3,7 +3,7 @@
 #
 
 # cat /etc/motd
-# neofetch
+neofetch
 
 # to tell zsh to shutup
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -23,10 +23,11 @@ export PATH="~/bin/.local/scripts/:$PATH"
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-. ~/.git-prompt.sh
+# mirage prompt
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;243m\][\[\e[38;5;196m\]\u\[\e[38;5;243m\]@\[\e[38;5;75m\]\h\[\e[0m\] \[\e[38;5;185m\]\W\[\e[0m\] ${PS1_CMD1}\[\e[38;5;243m\]]\\$\[\e[0m\] '
 
 # old gruvbox prompt
-PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;244m\][\[\e[93;1m\]\u\[\e[0;38;5;244m\]@\[\e[36m\]\h\[\e[0m\] \[\e[35m\]\W\[\e[0m\] \[\e[92m\]${PS1_CMD1}\[\e[38;5;244m\]]\\$\[\e[0m\] '
+# PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;244m\][\[\e[93;1m\]\u\[\e[0;38;5;244m\]@\[\e[36m\]\h\[\e[0m\] \[\e[35m\]\W\[\e[0m\] \[\e[92m\]${PS1_CMD1}\[\e[38;5;244m\]]\\$\[\e[0m\] '
 
 # PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;247m\]λ\[\e[0m\] \[\e[38;5;184m\]\W\[\e[38;5;221m\]${PS1_CMD1}\[\e[0m\] '
 
@@ -37,12 +38,7 @@ alias v="vim"
 alias v="nvim"
 alias c="clear"
 
-# fzf
-
-# [f]zf search and [p]review the files
-alias fp="fzf --preview 'bat --color=always --style=numbers --line-range :500 {}'"
-# [v]im [f]zf
-# alias vf="vim $(fzf)"
+alias  cp="cp -iv"
 
 # tmux
 
