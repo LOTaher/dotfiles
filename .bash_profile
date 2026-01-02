@@ -11,3 +11,5 @@ fi
 
 export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
 export XDG_CONFIG_HOME="$HOME"/.config
+export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
+. "$HOME/.cargo/env"

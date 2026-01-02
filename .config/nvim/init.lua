@@ -87,6 +87,10 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
 vim.keymap.set("n", "<S-l>", ":tabnext<CR>")
 vim.keymap.set("n", "<S-h>", ":tabprevious<CR>")
 
+vim.keymap.set("n", "<leader>w", function()
+  vim.cmd("noautocmd write")
+end)
+
 vim.keymap.set("n", "<leader>t", function()
 	vim.cmd.vnew()
 	vim.cmd.wincmd("J")
@@ -330,6 +334,7 @@ require("lazy").setup({
 					},
 				},
 				prismals = {},
+				clangd = {},
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -341,6 +346,7 @@ require("lazy").setup({
 				"eslint-lsp",
 				"html-lsp",
 				"sqlls",
+				"clangd",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -502,6 +508,20 @@ require("lazy").setup({
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
+
+	-- {
+	-- 	"blazkowolf/gruber-darker.nvim",
+	-- 	opts = {
+	-- 		bold = false,
+	-- 		italic = {
+	-- 			strings = false,
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		require("gruber-darker").setup()
+	-- 		vim.cmd.colorscheme("gruber-darker")
+	-- 	end
+	-- },
 
 	{
 		"echasnovski/mini.nvim",

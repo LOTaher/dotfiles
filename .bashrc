@@ -5,23 +5,31 @@
 # cat /etc/motd
 neofetch
 
-# to tell zsh to shutup
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# set to superior editing mode
+# ADD THIS LINE
 set -o vi
+# ADD THIS LINE
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-export PATH="$HOME/.local/bin/:$PATH"
-
+export PATH="$HOME/bin/.local/scripts/:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
+export GOROOT="/opt/homebrew/opt/go@1.23/libexec"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+export GOTOOLCHAIN=local
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -106,3 +114,14 @@ git_history () {
 
 #   Shorthand for the above function
 alias gith='git_history'
+export PATH=/usr/local/go/bin:$PATH
+. "$HOME/.cargo/env"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+test -r '/Users/lotaher/.opam/opam-init/init.sh' && . '/Users/lotaher/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true
+# END opam configuration
