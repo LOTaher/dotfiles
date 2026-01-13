@@ -2,34 +2,25 @@
 # LOTaher's ~/.bashrc
 #
 
-# cat /etc/motd
-neofetch
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 [[ $- != *i* ]] && return
 
-# ADD THIS LINE
 set -o vi
-# ADD THIS LINE
 
-# ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+export PATH="$HOME/.local/bin/scripts:$PATH"
 
-# ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-export PATH="$HOME/bin/.local/scripts/:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
+# Go
 export GOROOT="/opt/homebrew/opt/go@1.23/libexec"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
 export GOTOOLCHAIN=local
+export PATH="/opt/homebrew/opt/go@1.23/bin:$HOME/go/bin:$PATH"
 
+# Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,11 +33,8 @@ PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 alias vim="nvim"
-alias v="vim"
 alias v="nvim"
 alias c="clear"
-
-alias  cp="cp -iv"
 
 # tmux
 
@@ -83,13 +71,6 @@ alias fishies=asciiquarium
 
 # ~~~~~~~~~~~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-# ~~~~~~~~~~~~~~~ Claim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias cp='cp -iv'
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
-
 #   Shows you the last 10 branches you've been on (you can pass it a number to show more e.g. git_history -n 10)
 git_history () {
     local num_results=10  # Default number of results
@@ -114,14 +95,3 @@ git_history () {
 
 #   Shorthand for the above function
 alias gith='git_history'
-export PATH=/usr/local/go/bin:$PATH
-. "$HOME/.cargo/env"
-
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-test -r '/Users/lotaher/.opam/opam-init/init.sh' && . '/Users/lotaher/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true
-# END opam configuration

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+SCP_PATH="/hdds/www/splattedev/shared"
+
+if [ -z "$1" ]; then
+    echo "Usage: addfile [file_path]"
+    exit 1
+fi
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: addfile [file_path]"
+    exit 1
+fi
+
+if [ -f "$1" ]; then
+    scp $1 nuke:$SCP_PATH
+else
+    echo "file_path must be a file"
+    exit 1
+fi
+
+FILE=$(basename "$1")
+
+echo "File can be downloaded at: https://splatte.dev/shared/${FILE}"
+
