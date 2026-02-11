@@ -30,6 +30,8 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.foldenable = false
 
+vim.opt.suffixesadd:append '.md'
+
 -- Keymaps -------
 vim.g.mapleader = " "
 
@@ -43,10 +45,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- vim.keymap.set("n", "<C-k>", "<C-w>k")
 -- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
-vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>")
-vim.keymap.set("n", "<S-Up>", ":resize +2<CR>")
-vim.keymap.set("n", "<S-Down>", ":resize -2<CR>")
+vim.keymap.set("n", "<S-h>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<S-l>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<S-k>", ":resize +2<CR>")
+vim.keymap.set("n", "<S-j>", ":resize -2<CR>")
 
 vim.keymap.set("n", "<leader>|", "<Cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>_", "<Cmd>split<CR>")
@@ -84,8 +86,8 @@ vim.keymap.set("n", "d", '"_d')
 vim.keymap.set("v", "d", '"_d')
 
 vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
-vim.keymap.set("n", "<S-l>", ":tabnext<CR>")
-vim.keymap.set("n", "<S-h>", ":tabprevious<CR>")
+vim.keymap.set("n", "<S-Right>", ":tabnext<CR>")
+vim.keymap.set("n", "<S-Left>", ":tabprevious<CR>")
 
 vim.keymap.set("n", "<leader>w", function()
   vim.cmd("noautocmd write")

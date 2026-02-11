@@ -1,0 +1,4 @@
+#!/bin/sh
+
+url="https://google.com/search?q=$(urlencode "$*")"
+exec open -a "Google Chrome" "$url"
