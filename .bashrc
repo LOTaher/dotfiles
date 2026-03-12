@@ -10,12 +10,17 @@ set -o vi
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
-export PATH="$HOME/.local/bin:$PATH"
+export DOTFILES="$HOME/dotfiles"
+export SB="$HOME/sb"
 
 # Go
 export GOROOT="/opt/homebrew/opt/go@1.23/libexec"
@@ -61,6 +66,9 @@ git_history () {
 alias vim="nvim"
 alias v="nvim"
 alias c="clear"
+alias ?="google"
+alias sb="cd $SB"
+alias dots="cd $DOTFILES"
 
 # tmux
 
@@ -92,11 +100,10 @@ alias gp="git push"
 # [git] [h]istory
 alias gith='git_history'
 
-# misc
-
-alias ?="google"
-
 # fun
 
 alias fishies=asciiquarium
 
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
