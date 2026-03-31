@@ -68,10 +68,20 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
-vim.keymap.set("v", "<S-Tab>", "<<")
-vim.keymap.set("v", "<Tab>", ">>")
+vim.keymap.set("v", "<S-Tab>", "<gv")
+vim.keymap.set("v", "<Tab>", ">gv")
 
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>")
+
+vim.keymap.set("n", ";", "q:")
+
+vim.keymap.set("n", "<leader>t", ":below term<CR>i")
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
+
+vim.keymap.set("n", "<leader>q", ":copen<CR>")
+vim.keymap.set("n", "<A-j>", ":cnext<CR>")
+vim.keymap.set("n", "<A-k>", ":cprev<CR>")
+vim.keymap.set("n", "<leader>qq", ":cclose<CR>")
 
 vim.keymap.set("n", "ci(", '"_ci(')
 vim.keymap.set("n", "ci)", '"_ci)')
@@ -93,22 +103,7 @@ vim.keymap.set("n", "<leader>w", function()
   vim.cmd("noautocmd write")
 end)
 
-vim.keymap.set("n", "<leader>t", function()
-	vim.cmd.vnew()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 12)
-	vim.cmd.terminal()
-end)
-
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
-
 vim.keymap.set("n", "<leader>i", vim.cmd.InspectTree)
-
-vim.keymap.set("n", "<leader>pt", "<Plug>PlenaryTestFile")
-
-vim.keymap.set("n", "<leader><leader>x", ":source %<CR>")
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
-vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>")
 vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>")
@@ -156,15 +151,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.cmd("silent! %s/\\s\\+$//e")
-	end,
-})
-
-vim.api.nvim_create_autocmd("TermOpen", {
-	callback = function()
-		vim.opt.number = false
-		vim.opt.relativenumber = false
-		vim.opt.scrolloff = 0
-		vim.bo.filetype = "terminal"
 	end,
 })
 
@@ -236,6 +222,12 @@ require("lazy").setup({
 					cwd = vim.fn.stdpath("config"),
 				})
 			end)
+            vim.keymap.set("n", "<leader>fn", function()
+				builtin.find_files({
+					cwd = "$HOME/sb"
+				})
+			end)
+
 		end,
 	},
 	{
@@ -271,9 +263,6 @@ require("lazy").setup({
 					vim.keymap.set("n", "K", function()
 						vim.lsp.buf.hover()
 					end, opts)
-					vim.keymap.set("n", "<leader>vws", function()
-						vim.lsp.buf.workspace_symbol()
-					end, opts)
 					vim.keymap.set("n", "<leader>vd", function()
 						vim.diagnostic.open_float()
 					end, opts)
@@ -285,9 +274,6 @@ require("lazy").setup({
 					end, opts)
 					vim.keymap.set("n", "<leader>s", function()
 						vim.lsp.buf.rename()
-					end, opts)
-					vim.keymap.set("i", "<C-h>", function()
-						vim.lsp.buf.signature_help()
 					end, opts)
 					vim.keymap.set("n", "[d", function()
 						vim.diagnostic.goto_next()
@@ -349,6 +335,10 @@ require("lazy").setup({
 				"html-lsp",
 				"sqlls",
 				"clangd",
+				"marksman",
+				"ts_ls",
+				"prismals",
+				"lua_ls",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -511,19 +501,7 @@ require("lazy").setup({
 		end,
 	},
 
-	-- {
-	-- 	"blazkowolf/gruber-darker.nvim",
-	-- 	opts = {
-	-- 		bold = false,
-	-- 		italic = {
-	-- 			strings = false,
-	-- 		},
-	-- 	},
-	-- 	config = function()
-	-- 		require("gruber-darker").setup()
-	-- 		vim.cmd.colorscheme("gruber-darker")
-	-- 	end
-	-- },
+    -- Plugins -------
 
 	{
 		"echasnovski/mini.nvim",
@@ -549,8 +527,6 @@ require("lazy").setup({
 				"html",
 				"lua",
 				"luadoc",
-				"markdown",
-				"markdown_inline",
 				"query",
 				"vim",
 				"vimdoc",
@@ -558,7 +534,8 @@ require("lazy").setup({
 			auto_install = true,
 			highlight = {
 				enable = true,
-				additional_vim_regex_highlighting = { "ruby" },
+				additional_vim_regex_highlighting = false,
+			disable = { "markdown" },
 			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
@@ -653,4 +630,10 @@ require("lazy").setup({
 			end,
 		},
 	},
+    {
+      "vim-pandoc/vim-pandoc",
+    },
+    {
+      "vim-pandoc/vim-pandoc-syntax",
+    },
 })
