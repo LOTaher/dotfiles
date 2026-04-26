@@ -1,4 +1,5 @@
 #!/bin/sh
+#!/bin/sh
 
-url="https://google.com/search?q=$(urlencode "$*")"
-exec open -a "Google Chrome" "$url"
+url="https://lite.duckduckgo.com/lite/?q=$(urlencode "$*")"
+w3m "$url"
