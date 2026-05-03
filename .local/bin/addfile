@@ -2,7 +2,7 @@
 
 set -e
 
-SCP_PATH="/hdds/www/splattedev/shared"
+SCP_PATH="~/www/shared"
 
 if [ -z "$1" ]; then
     echo "Usage: addfile [file_path]"
@@ -15,7 +15,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 if [ -f "$1" ]; then
-    scp $1 nuke:$SCP_PATH
+    scp $1 heat:$SCP_PATH
 else
     echo "file_path must be a file"
     exit 1
