@@ -45,10 +45,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- vim.keymap.set("n", "<C-k>", "<C-w>k")
 -- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
-vim.keymap.set("n", "<S-h>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<S-l>", ":vertical resize +2<CR>")
-vim.keymap.set("n", "<S-k>", ":resize +2<CR>")
-vim.keymap.set("n", "<S-j>", ":resize -2<CR>")
+vim.keymap.set("n", "<S-Right>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<S-Left>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<S-Up>", ":resize +2<CR>")
+vim.keymap.set("n", "<S-Down>", ":resize -2<CR>")
 
 vim.keymap.set("n", "<leader>|", "<Cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>_", "<Cmd>split<CR>")
@@ -73,9 +73,9 @@ vim.keymap.set("v", "<Tab>", ">gv")
 
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>")
 
-vim.keymap.set("n", ";", "q:")
+-- vim.keymap.set("n", "\"", "q:")
 
-vim.keymap.set("n", "<leader>t", ":below term<CR>i")
+vim.keymap.set("n", "<leader>t", ":below te<CR>i")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 vim.keymap.set("n", "<leader>q", ":copen<CR>")
@@ -96,14 +96,17 @@ vim.keymap.set("n", "d", '"_d')
 vim.keymap.set("v", "d", '"_d')
 
 vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
-vim.keymap.set("n", "<S-Right>", ":tabnext<CR>")
-vim.keymap.set("n", "<S-Left>", ":tabprevious<CR>")
+vim.keymap.set("n", "<S-l>", ":tabnext<CR>")
+vim.keymap.set("n", "<S-h>", ":tabprevious<CR>")
 
 vim.keymap.set("n", "<leader>w", function()
   vim.cmd("noautocmd write")
 end)
 
 vim.keymap.set("n", "<leader>i", vim.cmd.InspectTree)
+
+vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>")
 vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<CR>")
@@ -500,6 +503,13 @@ require("lazy").setup({
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
+	-- {
+	-- 	"kepano/flexoki-neovim",
+	-- 	priority=1000,
+	-- 	config = function()
+	-- 		vim.cmd('colorscheme flexoki-light')
+	-- 	end
+	-- },
 
     -- Plugins -------
 
@@ -636,4 +646,17 @@ require("lazy").setup({
     {
       "vim-pandoc/vim-pandoc-syntax",
     },
+    {
+		{ dir = "~/repos/rave.nvim", config = function()
+			require("rave")
+		end}
+    },
+    {
+		{ dir = "~/repos/jumpy",   config = function()
+			require("jumpy").setup({
+			      provider = "anthropic",
+
+			})
+		end,}
+    }
 })
