@@ -124,7 +124,9 @@ require("gruvbox").setup({
 		strings = false,
 	},
 })
-require("tree-sitter-manager").setup()
+require("tree-sitter-manager").setup({
+	ensure_installed = { "typescript", "lua", "go" },
+})
 require("nvim-autopairs").setup()
 require("cmp").setup({
 	sources = {
@@ -216,11 +218,14 @@ require("conform").setup({
 require("99").setup({
 	provider = require("99").Providers.ClaudeCodeProvider,
 })
+require("jumpy").setup({
+	provider = "anthropic",
+	api_key = "",
+})
 
 vim.lsp.enable({
 	"lua_ls",
 	"clangd",
-	"tailwindcss",
 	"gopls",
 	"ts_ls",
 	"dockerls",
