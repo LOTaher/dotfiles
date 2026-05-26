@@ -99,6 +99,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- User Commands
+
+vim.api.nvim_create_user_command("LspRestart", function()
+	for _, client in ipairs(vim.lsp.get_clients()) do
+		client:stop()
+	end
+	vim.cmd("edit")
+end, {})
+
 -- Plugins
 
 vim.pack.add({
@@ -239,6 +248,20 @@ vim.lsp.config("lua_ls", {
 		Lua = {
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
+			},
+		},
+	},
+})
+
+vim.lsp.config("gopls", {
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			matcher = "fuzzy",
+			staticcheck = true,
+			analyses = {
+				unusedparams = true,
 			},
 		},
 	},
