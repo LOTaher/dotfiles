@@ -235,9 +235,7 @@ require("conform").setup({
 		return { timeout_ms = 500, lsp_format = "fallback" }
 	end,
 })
-require("99").setup({
-	provider = require("99").Providers.ClaudeCodeProvider,
-})
+
 require("jumpy").setup({
 	provider = "anthropic",
 })
