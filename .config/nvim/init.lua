@@ -125,7 +125,6 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
-	{ src = "https://github.com/ThePrimeagen/99" },
 })
 
 require("gruvbox").setup({
@@ -134,7 +133,14 @@ require("gruvbox").setup({
 	},
 })
 require("tree-sitter-manager").setup({
-	ensure_installed = { "typescript", "lua", "go" },
+	ensure_installed = { "typescript", "lua", "go", "zig", "odin", "prisma" },
+	languages = {
+		prisma = {
+			install_info = {
+				url = "https://github.com/victorhqc/tree-sitter-prisma",
+			},
+		},
+	},
 })
 require("nvim-autopairs").setup()
 require("cmp").setup({
@@ -222,14 +228,18 @@ require("conform").setup({
 		lua = { "stylua" },
 		terraform = { "terraform_fmt" },
 	},
-	format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+	format_on_save = function(bufnr)
+		if vim.bo[bufnr].filetype == "c" or vim.bo[bufnr].filetype == "cpp" then
+			return nil
+		end
+		return { timeout_ms = 500, lsp_format = "fallback" }
+	end,
 })
 require("99").setup({
 	provider = require("99").Providers.ClaudeCodeProvider,
 })
 require("jumpy").setup({
 	provider = "anthropic",
-	api_key = "",
 })
 
 vim.lsp.enable({
@@ -241,6 +251,8 @@ vim.lsp.enable({
 	"prismals",
 	"html-lsp",
 	"sqlls",
+	"zls",
+	"ols",
 })
 
 vim.lsp.config("lua_ls", {
@@ -289,13 +301,3 @@ map("n", "<leader>pv", ":Oil<CR>")
 
 map("n", "<leader>gs", vim.cmd.Git)
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
-
-vim.keymap.set("v", "<leader>vp", function()
-	require("99").visual()
-end)
-vim.keymap.set("n", "<leader>cp", function()
-	require("99").stop_all_requests()
-end)
-vim.keymap.set("n", "<leader>sp", function()
-	require("99").search()
-end)
