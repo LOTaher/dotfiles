@@ -15,6 +15,8 @@ vim.o.scrolloff = 10
 vim.o.colorcolumn = "100"
 vim.o.winborder = "rounded"
 
+vim.o.autoread = true
+
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
@@ -65,6 +67,30 @@ map("n", "<leader>tn", ":tabnew<CR>")
 map("n", "<S-l>", ":tabnext<CR>")
 map("n", "<S-h>", ":tabprevious<CR>")
 
+map("n", "<leader>w", ":noa w<CR>")
+
+map("n", "<leader>b", function()
+	local path = vim.api.nvim_exec("echo expand('%:p')", true)
+	vim.cmd("!open " .. "'" .. path .. "'")
+end)
+map("n", "<leader>h", function()
+	local snippet = [[
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+  ]]
+	local lines = vim.split(snippet, "\n")
+	vim.api.nvim_put(lines, "l", true, true)
+end)
+
 -- Autocommands
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -83,7 +109,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local opts = { buffer = ev.buf }
 		map("n", "gd", vim.lsp.buf.definition, opts)
-		map("n", "<leader>k", vim.lsp.buf.hover, opts)
+		map("n", "gr", vim.lsp.buf.references, opts)
+		map("n", "K", vim.lsp.buf.hover, opts)
 		map("n", "<leader>s", vim.lsp.buf.rename, opts)
 		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		map("n", "<leader>gr", vim.lsp.buf.references, opts)
@@ -125,6 +152,10 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
+	{
+		src = "https://github.com/nickjvandyke/opencode.nvim",
+		version = vim.version.range("*"),
+	},
 })
 
 require("gruvbox").setup({
@@ -133,7 +164,7 @@ require("gruvbox").setup({
 	},
 })
 require("tree-sitter-manager").setup({
-	ensure_installed = { "typescript", "lua", "go", "zig", "odin", "prisma" },
+	ensure_installed = { "typescript", "lua", "go", "zig", "odin", "prisma", "python" },
 	languages = {
 		prisma = {
 			install_info = {
@@ -251,6 +282,7 @@ vim.lsp.enable({
 	"sqlls",
 	"zls",
 	"ols",
+	"pyright",
 })
 
 vim.lsp.config("lua_ls", {
@@ -294,8 +326,27 @@ map("n", "<leader>ff", ":Pick files<CR>")
 map("n", "<leader>fh", ":Pick help<CR>")
 map("n", "<leader>fw", ":Pick grep_live<CR>")
 map("n", "<leader>fg", ":Pick files tool='git'<CR>")
+map("n", "<leader>fr", ":Pick resume<CR>")
 
 map("n", "<leader>pv", ":Oil<CR>")
 
 map("n", "<leader>gs", vim.cmd.Git)
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- OpenCode
+
+map("x", "<leader>os", function()
+	require("opencode").ask("@this: ")
+end)
+map("n", "<leader>oa", function()
+	require("opencode").ask()
+end)
+map("n", "<leader>os", function()
+	require("opencode").select()
+end)
+vim.keymap.set("n", "<S-p>", function()
+	require("opencode").command("session.half.page.up")
+end)
+vim.keymap.set("n", "<S-n>", function()
+	require("opencode").command("session.half.page.down")
+end)
