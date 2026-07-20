@@ -164,7 +164,7 @@ require("gruvbox").setup({
 	},
 })
 require("tree-sitter-manager").setup({
-	ensure_installed = { "typescript", "lua", "go", "zig", "odin", "prisma", "python" },
+	ensure_installed = { "typescript", "lua", "go", "zig", "odin", "prisma", "python", "javascript" },
 	languages = {
 		prisma = {
 			install_info = {
